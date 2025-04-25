@@ -10,18 +10,40 @@
           font-family: 'Comic Neue', cursive;
       }
       #texto {
-          font-size: 40px;
+          font-size: 35px;
           color: black;
       }
   </style>
 </head>
 
 <body>
-  <h1 id="texto">Este es un texto de ejemplo.</h1>
+  <h1 id="texto">Caramanduca.</h1>
   <button onclick="cambiarTamaño('aumentar')"> Aumentar </button>
   <button onclick="cambiarTamaño('disminuir')"> Disminuir </button>
 
+  <input type="number" id="inputTamaño" placeholder=" elige el tamaño si deseas (px)" />
+  <button id="toggleButton" onclick="toggleTamaño()"> Ejecutar </button>
+
   <script>
+      let tamañoActivo = false;
+
+      function toggleTamaño() {
+          const texto = document.getElementById('texto');
+          const inputTamano = document.getElementById('inputTamaño').value;
+
+          if (tamañoActivo) {
+              // Desactivar el cambio de tamaño
+              tamañoActivo = false;
+              texto.style.fontSize = '35px'; // Tamaño por defecto
+          } else {
+              // Activar el cambio de tamaño
+              tamañoActivo = true;
+              if (inputTamano) {
+                  texto.style.fontSize = inputTamano + 'px';
+              }
+          }
+      }
+
       function cambiarTamaño(accion) {
           const texto = document.getElementById('texto');
           let tActual = parseInt(window.getComputedStyle(texto).fontSize);
