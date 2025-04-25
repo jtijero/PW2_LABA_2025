@@ -17,7 +17,12 @@
       <option value="-">Resta</option>
       <option value="*">Multiplicación</option>
       <option value="/">División</option>
-    </select>
+      <option value="&&">AND Lógico</option>
+      <option value="||">OR Lógico</option>
+      <option value="&">AND de Bits</option>
+      <option value="|">OR de Bits</option>
+      <option value="^">XOR de Bits</option>
+  </select>
     
     <input type="number" id="num2" placeholder="Segundo número" required>
 
@@ -43,6 +48,21 @@
                     break;
                 case '/':
                     resultado = num1 / num2;
+                    break;
+                case '&&':
+                    resultado = num1 && num2;
+                    break;
+                case '||':
+                    resultado = num1 || num2;
+                    break;
+                case '&':
+                    resultado = num1 & num2;
+                    break;
+                case '|':
+                    resultado = num1 | num2;
+                    break;
+                case '^':
+                    resultado = num1 ^ num2;
                     break;
                 default:
                     resultado = 'Operador no válido';
