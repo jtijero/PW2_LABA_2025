@@ -3,34 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Operaciones Aritméticas </title>
-
+    <title>Operaciones Aritméticas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Comic Neue', cursive;
+            display: flex;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .calculadora {
+            flex: 1;
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+            background-color: beige;
+        }
+        .explicacion {
+            flex: 3;
+            border-left: 2px solid #ccc;
+            padding-left: 20px;
+        }
+        input, select {
+            margin: 10px 0;
+            padding: 5px;
+        }
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Calculadora </h1>
-    
-    <input type="number" id="num1" placeholder="Primer número" required>
-    
-    <select id="operador">
-      <option value="+">Suma</option>
-      <option value="-">Resta</option>
-      <option value="*">Multiplicación</option>
-      <option value="/">División</option>
-      <option value="&&">AND Lógico</option>
-      <option value="||">OR Lógico</option>
-      <option value="&">AND de Bits</option>
-      <option value="|">OR de Bits</option>
-      <option value="^">XOR de Bits</option>
-  </select>
-    
-    <input type="number" id="num2" placeholder="Segundo número" required>
+    <div class="calculadora">
+        <h1>Calculadora</h1>
+        <input type="number" id="num1" placeholder="Primer número" required>
+        <select id="operador">
+            <option value="+">Suma</option>
+            <option value="-">Resta</option>
+            <option value="*">Multiplicación</option>
+            <option value="/">División</option>
+            <option value="&&">AND Lógico</option>
+            <option value="||">OR Lógico</option>
+            <option value="&">AND de Bits</option>
+            <option value="|">OR de Bits</option>
+            <option value="^">XOR de Bits</option>
+            <option value="<<">Desplazamiento Izquierda</option>
+            <option value=">>">Desplazamiento Derecha</option>
+        </select>
+        <input type="number" id="num2" placeholder="Segundo número" required>
+        <button onclick="calcular()">Calcular</button>
+        <div id="resultado"></div>
+    </div>
 
-    <button onclick="calcular()">Calcular</button>
-    <div id="resultado"></div>
+    <div class="explicacion">
+        <h2>Explicación de Operaciones Básicas de Bits</h2>
+        <p><strong>AND (&):</strong> Devuelve 1 si ambos bits son 1.</p>
+        <p><strong>OR (|):</strong> Devuelve 1 si al menos uno de los bits es 1.</p>
+        <p><strong>XOR (^):</strong> Devuelve 1 si los bits son diferentes.</p>
+        <p><strong>Desplazamiento Izquierda (<<):</strong> Desplaza los bits hacia la izquierda, llenando con ceros a la derecha.</p>
+        <p><strong>Desplazamiento Derecha (>>):</strong> Desplaza los bits hacia la derecha, llenando con ceros a la izquierda.</p>
+    </div>
 
     <script>
-      function calcular() {
+        function calcular() {
             const num1 = parseFloat(document.getElementById('num1').value);
             const num2 = parseFloat(document.getElementById('num2').value);
             const operador = document.getElementById('operador').value;
@@ -63,6 +106,12 @@
                     break;
                 case '^':
                     resultado = num1 ^ num2;
+                    break;
+                case '<<':
+                    resultado = num1 << num2;
+                    break;
+                case '>>':
+                    resultado = num1 >> num2;
                     break;
                 default:
                     resultado = 'Operador no válido';
