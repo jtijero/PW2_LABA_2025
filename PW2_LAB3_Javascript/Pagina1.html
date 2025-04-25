@@ -1,1 +1,37 @@
-crear una página web con un texto y dos botones (al estilo del ejemplo del foco que se enciende y apaga) que permitan cambiar el tamaño de la letra de un texto, intente hacerlo también con los colores.
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambiar Tamaño y Color de Texto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+  <style>
+      body {
+          font-family: 'Comic Neue', cursive;
+      }
+      #texto {
+          font-size: 40px;
+          color: black;
+      }
+  </style>
+</head>
+
+<body>
+  <h1 id="texto">Este es un texto de ejemplo.</h1>
+  <button onclick="cambiarTamaño('aumentar')"> Aumentar </button>
+  <button onclick="cambiarTamaño('disminuir')"> Disminuir </button>
+
+  <script>
+      function cambiarTamaño(accion) {
+          const texto = document.getElementById('texto');
+          let tActual = parseInt(window.getComputedStyle(texto).fontSize);
+          if (accion === 'aumentar') {
+              texto.style.fontSize = (tActual + 2) + 'px';
+          } else if (accion === 'disminuir') {
+              texto.style.fontSize = (tActual - 2) + 'px';
+          }
+      }
+
+  </script>
+</body>
+</html>
