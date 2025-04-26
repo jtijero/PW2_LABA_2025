@@ -81,6 +81,27 @@
             background-color: whitesmoke;
         }
 
+        .fechaActual button {
+          /* Tamaño del botón */
+          width: 250px;
+          height: 200px;
+          padding: 30px;
+          margin-top: 20px;
+
+          font-weight: 900;
+          background: rgb(114, 209, 127);
+          cursor: pointer;
+          transition: all 0.3s ease;
+          border-radius: 25px;
+          color: white;
+          font-family: 'Comic Neue', cursive;
+          font-size: 1.5rem;
+          letter-spacing: 2px;  
+        }
+        .fechaActual button:hover {
+          background: #60c07b;
+          transform: scale(1.05);
+        }
     </style>
 </head>
 
@@ -127,10 +148,12 @@
         </div>
 
         <div class="ejerciciosfechas">
-            <button onclick="mostrarFecha()">Mostrar fecha actual</button>
-            <div class="fecha-container">
-                <p id="fecha-hoy"></p>
-                <p id="dia-actual"></p>
+            <div class="fechaActual">
+                <button onclick="mostrarFecha()">Mostrar fecha actual</button>
+                <div class="fecha-container">
+                    <p id="fecha-hoy"></p>
+                    <p id="dia-actual"></p>
+                </div>
             </div>
         </div>
       </div>
