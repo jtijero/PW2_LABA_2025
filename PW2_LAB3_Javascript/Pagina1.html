@@ -46,6 +46,8 @@
     <button id="colorToggleButton" onclick="toggleColor()">Cambiar Color</button>
 
     <button id="invertirButton" onclick="toggleInvertir()">Invertir Texto</button>
+    
+    <button id="quitarGuionesButton" onclick="toggleGuiones()">Quitar Guiones</button>
 </div>
 
 <div id="texto">Escribe algo para verlo aquí.</div>
@@ -107,6 +109,25 @@
           texto.innerText = textoActual;
       }
       textoInvertido = !textoInvertido; // Alterna el estado de inversión
+  }
+
+  let textoOriginal = '';
+  let guionesQuitados = false;
+
+  function toggleGuiones() {
+      const texto = document.getElementById('texto');
+      const inputTexto = document.getElementById('inputTexto').value;
+      
+      if (!guionesQuitados) {
+          // Almacenar texto original y quitar guiones
+          textoOriginal = inputTexto;
+          texto.textContent = inputTexto.replace(/-/g, '');
+          guionesQuitados = true;
+      } else {
+          // Restaurar texto original
+          texto.textContent = textoOriginal;
+          guionesQuitados = false;
+      }
   }
 </script>
 </body>
