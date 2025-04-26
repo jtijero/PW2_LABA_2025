@@ -127,11 +127,10 @@
         </div>
 
         <div class="ejerciciosfechas">
-            <div class="ejerciciosfechas">
-                <h2>Obtener día de la semana</h2>
-                <input type="number" id="numeroDia" placeholder="Ingrese número (0-6)" min="0" max="6">
-                <button onclick="mostrarDia()">Mostrar día</button>
-                <div id="resultado-dia"></div>
+            <button onclick="mostrarFecha()">Mostrar fecha actual</button>
+            <div class="fecha-container">
+                <p id="fecha-hoy"></p>
+                <p id="dia-actual"></p>
             </div>
         </div>
       </div>
@@ -233,7 +232,26 @@
             const resultado = obtenerDiaSemana(parseInt(input.value));
                 document.getElementById('resultado-dia').textContent = `Día: ${resultado}`;
         }
-        
+
+        function mostrarFecha() {
+          // Limpiar contenido previo
+          document.getElementById('fecha-hoy').textContent = '';
+          document.getElementById('dia-actual').textContent = '';
+          
+          const fecha = new Date();
+          const opcionesFecha = { 
+              day: '2-digit', 
+              month: '2-digit', 
+              year: 'numeric' 
+          };
+          
+          const fechaFormateada = fecha.toLocaleDateString('es-ES', opcionesFecha);
+          const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+          const diaActual = diasSemana[fecha.getDay()];
+
+          document.getElementById('fecha-hoy').textContent = `Fecha actual: ${fechaFormateada}`;
+          document.getElementById('dia-actual').textContent = `Hoy es: ${diaActual}`;
+      }
     </script>
 </body>
 </html>
