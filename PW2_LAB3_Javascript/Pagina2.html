@@ -19,6 +19,7 @@
             display: flex;
             margin-bottom: 20px;
             background-color: whitesmoke;
+            border-radius: 25px;
         }
         .calculadora {
             flex: 1;
@@ -29,6 +30,8 @@
             max-width: 250px;
             padding: 10px;
             border: 1px solid #ccc;
+            text-align: center;
+            
         }
         .explicacion {
             flex: 3;
@@ -42,7 +45,7 @@
             background-color: beige;
             padding: 10px;
             border: 1px solid #ccc;
-            max-width: 250px; /* Ajustar el ancho máximo */
+            max-width: 250px;
         }
         input, select {
             margin: 10px 0;
@@ -69,9 +72,11 @@
         }
         .ejerciciosfechas {
             flex: 3;
+            display: flex;
             border-left: 2px solid #ccc;
             padding-left: 20px;
-            margin-left: 20px; /* Espacio entre la tabla y la nueva explicación */
+            margin-left: 20px;
+            
         }
 
         .tabla-y-explicacion {
@@ -79,14 +84,17 @@
             flex: 1;
             margin-top: 20px;
             background-color: whitesmoke;
+            border-radius: 25px;
         }
 
         .fechaActual button {
           /* Tamaño del botón */
           width: 250px;
-          height: 200px;
+          height: 250px;
+          max-height: 1000px;
           padding: 30px;
           margin-top: 20px;
+          flex:2;
 
           font-weight: 900;
           background: rgb(114, 209, 127);
@@ -100,6 +108,31 @@
         }
         .fechaActual button:hover {
           background: #60c07b;
+          transform: scale(1.05);
+        }
+
+        .fechaArequipa button {
+          /* Tamaño del botón */
+          width: 500px;
+          height: 250px;
+          max-height: 1000px;
+          padding: 30px;
+          margin-top: 20px;
+          margin-left:40px;
+          flex:2;
+
+          font-weight: 900;
+          background: rgb(114, 152, 209);
+          cursor: pointer;
+          transition: all 0.3s ease;
+          border-radius: 25px;
+          color: white;
+          font-family: 'Comic Neue', cursive;
+          font-size: 1.5rem;
+          letter-spacing: 2px;  
+        }
+        .fechaArequipa button:hover {
+          background: #6080c0;
           transform: scale(1.05);
         }
     </style>
@@ -154,6 +187,10 @@
                     <p id="fecha-hoy"></p>
                     <p id="dia-actual"></p>
                 </div>
+            </div>
+            <div class="fechaArequipa">
+                <button onclick="contrarrelojAqp()">¿Cuántos días faltan para el Aniversario de Arequipa?</button>
+                <div id="contador-aqp" class="contador-estilo"></div>
             </div>
         </div>
       </div>
@@ -274,7 +311,30 @@
 
           document.getElementById('fecha-hoy').textContent = `Fecha actual: ${fechaFormateada}`;
           document.getElementById('dia-actual').textContent = `Hoy es: ${diaActual}`;
+        }
+
+        function contrarrelojAqp() {
+          const hoy = new Date();
+          const añoActual = hoy.getFullYear();
+          
+          // Fecha objetivo (15 de agosto)
+          let fechaAniversario = new Date(añoActual, 7, 15); // Mes 7 = agosto
+          
+          // Si ya pasó este año, calcular para el próximo
+          if (hoy > fechaAniversario) {
+              fechaAniversario = new Date(añoActual + 1, 7, 15);
+          }
+          
+          // Cálculo de diferencia en milisegundos
+          const diferencia = fechaAniversario - hoy;
+          
+          // Conversión a días y redondeo hacia arriba
+          const diasRestantes = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
+          
+          // Mostrar resultado con formato
+          document.getElementById('contador-aqp').innerHTML = `<strong>${diasRestantes} días</strong> restantes<br>`;
       }
+
     </script>
 </body>
 </html>
