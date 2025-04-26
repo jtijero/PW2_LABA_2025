@@ -9,22 +9,40 @@
         body {
             font-family: 'Comic Neue', cursive;
             display: flex;
+            flex-direction: column;
             margin: 20px;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
+        }
+        .contenedor {
+            display: flex;
+            margin-bottom: 20px;
+            background-color: whitesmoke;
         }
         .calculadora {
             flex: 1;
             margin-right: 20px;
             display: flex;
             flex-direction: column;
-            background-color: beige;
+            background-color: bisque;
+            max-width: 250px;
+            padding: 10px;
+            border: 1px solid #ccc;
         }
         .explicacion {
             flex: 3;
             border-left: 2px solid #ccc;
             padding-left: 20px;
+        }
+        .tabla-suma {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: beige;
+            padding: 10px;
+            border: 1px solid #ccc;
+            max-width: 250px; /* Ajustar el ancho máximo */
         }
         input, select {
             margin: 10px 0;
@@ -33,45 +51,91 @@
         button {
             padding: 5px 10px;
             cursor: pointer;
+            width: 100%;
         }
-        #resultado {
+        #resultado, #suma-resultado {
             margin-top: 20px;
             font-weight: bold;
         }
+        table {
+            margin-top: 10px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        .ejerciciosfechas {
+            flex: 3;
+            border-left: 2px solid #ccc;
+            padding-left: 20px;
+            margin-left: 20px; /* Espacio entre la tabla y la nueva explicación */
+        }
+
+        .tabla-y-explicacion {
+            display: flex;
+            flex: 1;
+            margin-top: 20px;
+            background-color: whitesmoke;
+        }
+
     </style>
 </head>
 
 <body>
-    <div class="calculadora">
-        <h1>Calculadora</h1>
-        <input type="number" id="num1" placeholder="Primer número" required>
-        <select id="operador">
-            <option value="+">Suma</option>
-            <option value="-">Resta</option>
-            <option value="*">Multiplicación</option>
-            <option value="/">División</option>
-            <option value="&&">AND Lógico</option>
-            <option value="||">OR Lógico</option>
-            <option value="&">AND de Bits</option>
-            <option value="|">OR de Bits</option>
-            <option value="^">XOR de Bits</option>
-            <option value="<<">Desplazamiento Izquierda</option>
-            <option value=">>">Desplazamiento Derecha</option>
-        </select>
-        <input type="number" id="num2" placeholder="Segundo número" required>
-        <button onclick="calcular()">Calcular</button>
-        <div id="resultado"></div>
-    </div>
+    <div class="contenedor">
+        <div class="calculadora">
+            <h1>Calculadora</h1>
+            <input type="number" id="num1" placeholder="Primer número" required>
+            <select id="operador">
+                <option value="+">Suma</option>
+                <option value="-">Resta</option>
+                <option value="*">Multiplicación</option>
+                <option value="/">División</option>
+                <option value="&&">AND Lógico</option>
+                <option value="||">OR Lógico</option>
+                <option value="&">AND de Bits</option>
+                <option value="|">OR de Bits</option>
+                <option value="^">XOR de Bits</option>
+                <option value="<<">Desplazamiento Izquierda</option>
+                <option value=">>">Desplazamiento Derecha</option>
+            </select>
+            <input type="number" id="num2" placeholder="Segundo número" required>
+            <button onclick="calcular()">Calcular</button>
+            <div id="resultado"></div>
+        </div>
 
-    <div class="explicacion">
-        <h2>Explicación de Operaciones Básicas de Bits</h2>
-        <p><strong>AND (&):</strong> Devuelve 1 si ambos bits son 1.</p>
-        <p><strong>OR (|):</strong> Devuelve 1 si al menos uno de los bits es 1.</p>
-        <p><strong>XOR (^):</strong> Devuelve 1 si los bits son diferentes.</p>
-        <p><strong>Desplazamiento Izquierda (<<):</strong> Desplaza los bits hacia la izquierda, llenando con ceros a la derecha.</p>
-        <p><strong>Desplazamiento Derecha (>>):</strong> Desplaza los bits hacia la derecha, llenando con ceros a la izquierda.</p>
+        <div class="explicacion">
+            <h2>Explicación de Operaciones Básicas de Bits</h2>
+            <p><strong>AND (&):</strong> Devuelve 1 si ambos bits son 1.</p>
+            <p><strong>OR (|):</strong> Devuelve 1 si al menos uno de los bits es 1.</p>
+            <p><strong>XOR (^):</strong> Devuelve 1 si los bits son diferentes.</p>
+            <p><strong>Desplazamiento Izquierda (<<):</strong> Desplaza los bits hacia la izquierda, llenando con ceros a la derecha.</p>
+            <p><strong>Desplazamiento Derecha (>>):</strong> Desplaza los bits hacia la derecha, llenando con ceros a la izquierda.</p>
+        </div>
     </div>
+    <div class="tabla-y-explicacion">
+        <div class="tabla-suma">
+            <h2>Calcular Suma de Valores de una Tabla</h2>
+            <input type="number" id="cantidad" placeholder="Cantidad de valores" required>
+            <button onclick="crearTabla()">Crear Tabla</button>
+            <div id="tabla-container"></div>
+            <button onclick="calcularSuma()">Calcular Suma</button>
+            <div id="suma-resultado"></div>
+        </div>
 
+        <div class="ejerciciosfechas">
+            <div class="ejerciciosfechas">
+                <h2>Obtener día de la semana</h2>
+                <input type="number" id="numeroDia" placeholder="Ingrese número (0-6)" min="0" max="6">
+                <button onclick="mostrarDia()">Mostrar día</button>
+                <div id="resultado-dia"></div>
+            </div>
+        </div>
+      </div>
+      
     <script>
         function calcular() {
             const num1 = parseFloat(document.getElementById('num1').value);
@@ -118,6 +182,39 @@
             }
             document.getElementById('resultado').innerText = `Resultado: ${resultado}`;
         }
+
+        function crearTabla() {
+            const cantidadValores = parseInt(document.getElementById('cantidad').value);
+            const contenedorTabla = document.getElementById('tabla-container');
+                contenedorTabla.innerHTML = ''; // Limpiar tabla anterior
+
+            const tabla = document.createElement('table');
+            const encabezado = tabla.createTHead();
+            const fila = encabezado.insertRow();
+            const th1 = document.createElement('th');
+                th1.innerText = 'Valores';
+            fila.appendChild(th1);
+
+            const cuerpoTabla = tabla.createTBody();
+                for (let i = 0; i < cantidadValores; i++) {
+                    const tr = cuerpoTabla.insertRow();
+                    const td = document.createElement('td');
+                    const valorAleatorio = Math.floor(Math.random() * 100); // Valor aleatorio entre 0 y 99
+                        td.innerText = valorAleatorio;
+                    tr.appendChild(td);
+                }
+            contenedorTabla.appendChild(tabla);
+        }
+
+        function calcularSuma() {
+            const celdasValores = document.querySelectorAll('#tabla-container td');
+            let sumaTotal = 0;
+                celdasValores.forEach(td => {
+                    sumaTotal += parseInt(td.innerText);
+                });
+            document.getElementById('suma-resultado').innerText = `Suma Total: ${sumaTotal}`;
+        }
+
     </script>
 </body>
 </html>
