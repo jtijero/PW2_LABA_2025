@@ -215,6 +215,25 @@
             document.getElementById('suma-resultado').innerText = `Suma Total: ${sumaTotal}`;
         }
 
+        function obtenerDiaSemana(numeroDia) {
+            const dias = [
+                "Domingo", 
+                "Lunes", 
+                "Martes", 
+                "Miércoles", 
+                "Jueves", 
+                "Viernes", 
+                "Sábado"
+            ];
+            return dias[numeroDia] || "Número inválido";
+        }
+
+        function mostrarDia() {
+            const input = document.getElementById('numeroDia');
+            const resultado = obtenerDiaSemana(parseInt(input.value));
+                document.getElementById('resultado-dia').textContent = `Día: ${resultado}`;
+        }
+        
     </script>
 </body>
 </html>
