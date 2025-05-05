@@ -46,7 +46,7 @@
     <button id="colorToggleButton" onclick="toggleColor()">Cambiar Color</button>
 
     <button id="invertirButton" onclick="toggleInvertir()">Invertir Texto</button>
-    
+
     <button id="quitarGuionesButton" onclick="toggleGuiones()">Quitar Guiones</button>
 </div>
 
@@ -119,7 +119,6 @@
       const inputTexto = document.getElementById('inputTexto').value;
       
       if (!guionesQuitados) {
-          // Almacenar texto original y quitar guiones
           textoOriginal = inputTexto;
           texto.textContent = inputTexto.replace(/-/g, '');
           guionesQuitados = true;
