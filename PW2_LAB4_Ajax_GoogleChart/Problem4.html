@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Regiones</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+        }
+        #panel {
+            width: 300px;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-right: 1px solid #ccc;
+            font-size: 12px;
+        }
+        #contenido {
+            flex-grow: 1;
+            padding: 5px;
+        }
+        h2 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+        th {
+            background-color: #e0e0e0;
+        }
+    </style>
+    <script type="text/javascript">
+        // Cargar la biblioteca de Google Charts
+        google.charts.load('current', {'packages':['corechart']});
+        
+        // Función para dibujar el gráfico
+        function drawChart(data) {
+            const dataTable = new google.visualization.DataTable();
+            dataTable.addColumn('string', 'Fecha');
+            dataTable.addColumn('number', 'Confirmados');
+
+            // Agregar los datos de Arequipa
+            data.forEach(entry => {
+                if (entry.region === 'Arequipa') {
+                    entry.confirmed.forEach(confirmado => {
+                        const fecha = confirmado.date; // Suponiendo que el objeto tiene una propiedad date en el json
+                        const valor = parseInt(confirmado.value);
+                        dataTable.addRow([fecha, valor]);
+                    });
+                }
+            });
+
+            // Opciones del gráfico
+            const options = {
+                title: 'Casos Confirmados en Arequipa a lo largo del tiempo',
+                curveType: 'function',
+                legend: { position: 'bottom' },
+                hAxis: {
+                    title: 'Fecha'
+                },
+                vAxis: {
+                    title: 'Número de Casos Confirmados'
+                }
+            };
+
+            // Crear el gráfico
+            const chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            chart.draw(dataTable, options);
+        }
+
+        // Cargar los datos desde el archivo JSON
+        function loadData() {
+            fetch('data.json')
+                .then(response => response.json())
+                .then(data => {
+                    drawChart(data);
+                })
+                .catch(error => console.error('Error al cargar los datos:', error));
+        }
+
+        // Función para cargar el archivo JSON y extraer las regiones y sus confirmados
+        async function cargarRegiones() {
+            const response = await fetch('data.json');
+            const data = await response.json();
+            const regionSums = [];
+
+            // Calcular la suma total de confirmados por región
+            data.forEach(region => {
+                const totalConfirmados = region.confirmed.reduce((total, entry) => total + parseInt(entry.value), 0);
+                regionSums.push({ region: region.region, total: totalConfirmados });
+            });
+
+            // Ordenar las regiones por total de confirmados de mayor a menor
+            regionSums.sort((a, b) => b.total - a.total);
+
+            // Tomar las 10 regiones con más confirmados
+            const topRegions = regionSums.slice(0, 10);
+
+            // Agregar las regiones a la tabla
+            const regionList = document.getElementById('regionList');
+            topRegions.forEach(({ region, total }) => {
+                const row = document.createElement('tr');
+                const regionCell = document.createElement('td');
+                const confirmadosCell = document.createElement('td');
+
+                regionCell.textContent = region;
+                confirmadosCell.textContent = total;
+
+                row.appendChild(regionCell);
+                row.appendChild(confirmadosCell);
+                regionList.appendChild(row);
+            });
+
+            // Dibujar el gráfico después de cargar las regiones
+            drawChart(data);
+        }
+
+        // Inicializar Google Charts y cargar los datos
+        google.charts.setOnLoadCallback(cargarRegiones);
+    </script>
+</head>
+<body>
+    <div id="panel">
+        <h2>Top 10 Regiones</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Región</th>
+                    <th>Confirmados</th>
+                </tr>
+            </thead>
+            <tbody id="regionList">
+            </tbody>
+        </table>
+    </div>
+    <div id="contenido">
+        <div id="curve_chart" style="width: 1150px; height: 500px"></div>
+    </div>
+</body>
+</html>
