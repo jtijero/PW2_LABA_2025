@@ -31,7 +31,6 @@
             text-align: left;
             border-bottom: 1px solid #ccc;
         }
-
         th {
             background-color: #e0e0e0;
         }
@@ -39,7 +38,7 @@
 </head>
 <body>
     <div id="panel">
-        <h2>Regiones de data.json</h2>
+        <h2>Top 10 Regiones</h2>
         <table>
             <thead>
                 <tr>
@@ -55,21 +54,33 @@
     </div>
 
     <script>
+        // Función para cargar el archivo JSON y extraer las regiones y sus confirmados
         async function cargarRegiones() {
                 const response = await fetch('data.json');
                 const data = await response.json();
-                const regionList = document.getElementById('regionList');
+                const regionSums = [];
 
-                // Iterar sobre las regiones y agregar a la tabla
+                // Calcular la suma total de confirmados por región
                 data.forEach(region => {
                     const totalConfirmados = region.confirmed.reduce((total, entry) => total + parseInt(entry.value), 0);
+                    regionSums.push({ region: region.region, total: totalConfirmados });
+                });
 
+                // Ordenar las regiones por total de confirmados de mayor a menor
+                regionSums.sort((a, b) => b.total - a.total);
+
+                // Tomar las 10 regiones con más confirmados
+                const topRegions = regionSums.slice(0, 10);
+
+                // Agregar las regiones a la tabla
+                const regionList = document.getElementById('regionList');
+                topRegions.forEach(({ region, total }) => {
                     const row = document.createElement('tr');
                     const regionCell = document.createElement('td');
                     const confirmadosCell = document.createElement('td');
 
-                    regionCell.textContent = region.region;
-                    confirmadosCell.textContent = totalConfirmados;
+                    regionCell.textContent = region;
+                    confirmadosCell.textContent = total;
 
                     row.appendChild(regionCell);
                     row.appendChild(confirmadosCell);
