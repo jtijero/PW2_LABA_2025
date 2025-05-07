@@ -133,10 +133,9 @@
 
             // Calcular la suma total de confirmados por región, excluyendo Lima y Callao
             data.forEach(region => {
-                if (region.region !== "Lima" && region.region !== "Callao") {
                     const totalConfirmados = region.confirmed.reduce((total, entry) => total + parseInt(entry.value), 0);
                     regionSums.push({ region: region.region, total: totalConfirmados });
-                }
+                
             });
 
             regionSums.sort((a, b) => b.total - a.total);
