@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Regiones</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            overflow-x: auto;
+        }
+        #panel {
+            width: 200px;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-right: 5px solid #f0f0f0;
+            font-size: 12px;
+            height: 500px; /* Altura fija para el panel */
+            overflow-y: auto; /* Habilitar desplazamiento vertical */
+            flex-grow: 0.05;
+        }
+        #contenido {
+            flex-grow: 1;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+        h2 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+        th {
+            background-color: #e0e0e0;
+            cursor: pointer;
+        }
+        .selected {
+            background-color: #d0e0d0; /* Color de fondo para las regiones seleccionadas */
+        }
+    </style>
+    <script type="text/javascript">
+        // Cargar la biblioteca de Google Charts
+        google.charts.load('current', {'packages':['corechart']});
+
+        function drawChart(data, selectedRegions) {
+            const dataTable = new google.visualization.DataTable();
+            dataTable.addColumn('string', 'Fecha');
+
+            // Agregar una columna para cada región seleccionada
+            selectedRegions.forEach(region => {
+                dataTable.addColumn('number', region);
+            });
+
+            const fechas = [];
+            const rows = {};
+
+            // Recopilar datos para las regiones seleccionadas
+            data.forEach(entry => {
+                if (selectedRegions.includes(entry.region)) {
+                    entry.confirmed.forEach(confirmado => {
+                        const fecha = confirmado.date; // Suponiendo que el objeto tiene una propiedad date en el json
+                        const valor = parseInt(confirmado.value);
+                        
+                        if (!fechas.includes(fecha)) {
+                            fechas.push(fecha);
+                        }
+
+                        // Almacenar el valor por fecha y región
+                        if (!rows[fecha]) {
+                            rows[fecha] = {};
+                        }
+                        rows[fecha][entry.region] = valor;
+                    });
+                }
+            });
+
+            // Agregar filas al DataTable
+            fechas.forEach(fecha => {
+                const row = [fecha];
+                selectedRegions.forEach(region => {
+                    row.push(rows[fecha][region] || 0); // Si no hay datos, agregar 0
+                });
+                dataTable.addRow(row);
+            });
+
+            // Opciones del gráfico
+            const options = {
+                title: 'Casos Confirmados a lo largo del tiempo',
+                curveType: 'function',
+                legend: { position: 'bottom' },
+                hAxis: {
+                    title: 'Fecha'
+                },
+                vAxis: {
+                },
+                chartArea: {
+                    left: 70, // Ajustar el margen izquierdo
+                    right: 50, // Ajustar el margen derecho
+                    top: 70 , // Ajustar el margen superior
+                    bottom: 110 // Ajustar el margen inferior
+                }
+            };
+
+            // Crear el gráfico
+            const chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            chart.draw(dataTable, options);
+        }
+
+        // Cargar los datos desde el archivo JSON
+        function loadData() {
+            fetch('data.json')
+                .then(response => response.json())
+                .then(data => {
+                    const selectedRegions = Array.from(document.querySelectorAll('.selected')).map(el => el.dataset.region);
+                    drawChart(data, selectedRegions);
+                })
+                .catch(error => console.error('Error al cargar los datos:', error));
+        }
+
+        // Función para cargar el archivo JSON y extraer las regiones y sus confirmados
+        async function cargarRegiones() {
+          const response = await fetch('data.json');
+            const data = await response.json();
+            const regionSums = [];
+
+            // Calcular la suma total de confirmados por región, excluyendo Lima y Callao
+            data.forEach(region => {
+                if (region.region !== "Lima" && region.region !== "Callao") {
+                    const totalConfirmados = region.confirmed.reduce((total, entry) => total + parseInt(entry.value), 0);
+                    regionSums.push({ region: region.region, total: totalConfirmados });
+                }
+            });
+
+            regionSums.sort((a, b) => b.total - a.total);
+
+            // Tomar las 10 regiones con más confirmados
+            const topRegions = regionSums.slice(0, 24);
+
+            // Agregar las regiones a la tabla
+            const regionList = document.getElementById('regionList');
+            topRegions.forEach(({ region, total }) => {
+                const row = document.createElement('tr');
+                const regionCell = document.createElement('td');
+                const confirmadosCell = document.createElement('td');
+
+                regionCell.textContent = region;
+                regionCell.dataset.region = region; // Almacenar el nombre de la región
+                regionCell.addEventListener('click', (event) => {
+                    const regionElement = event.target;
+                    const isSelected = regionElement.classList.toggle('selected'); // Alternar la clase 'selected'
+
+                    // Cargar los datos del gráfico al hacer clic
+                    loadData();
+                });
+
+                confirmadosCell.textContent = total;
+
+                row.appendChild(regionCell);
+                row.appendChild(confirmadosCell);
+                regionList.appendChild(row);
+            });
+
+            // Dibujar el gráfico después de cargar las regiones
+            loadData();
+        }
+
+        // Inicializar Google Charts y cargar los datos
+        google.charts.setOnLoadCallback(cargarRegiones);
+    </script>
+</head>
+<body>
+    <div id="panel">
+        <h2>Regiones</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Región</th>
+                    <th>#casos</th>
+                </tr>
+            </thead>
+            <tbody id="regionList">
+            </tbody>
+        </table>
+    </div>
+    <div id="contenido">
+        <div id="curve_chart" style="width: 1300; height: 500px"></div>
+    </div>
+</body>
+</html>
