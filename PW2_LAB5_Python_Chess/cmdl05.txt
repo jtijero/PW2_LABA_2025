@@ -1,0 +1,18 @@
+2. Creando entorno de trabajo
+//(virtualenv -p python3 py1) <--unix o macOs  (python3 -m venv py1) <-- windows
+python -m venv py1 //en carpeta ya creada C:\Users\TIJERO\Desktop\PW2_LABA_2025\PW2_LAB5_Python_Chess
+mkdir src        
+cd src
+  //git init según la practica, pero no lo haremos
+
+3. Activando el entorno virtual
+	source ../bin/activate   (.\py1\Scripts\activate) <--windows
+ 
+4.Instalar bibliotecas necesarias
+	pip install pygame
+python -m pip show pygame //verifica que pygame esté instalado correctamente
+
+//5.Desactivar entorno virtual()
+	deactivate
+	
+
