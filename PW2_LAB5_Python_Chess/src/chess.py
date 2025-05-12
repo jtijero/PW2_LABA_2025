@@ -2,9 +2,21 @@
 from chessPictures import *
 from interpreter import draw
 
+# Crear los caballos
+knight = Picture(KNIGHT)
+pawn = Picture(PAWN) 
+
+# Crear las filas de caballos
+fila8 = knight.horizontalRepeat(2)  # fila del rey negro que haremos despues
+fila7 = pawn.horizontalRepeat(2)  # fila de peones negros que haremos despues tambien
+
+# Combinar las filas
+fichasnegras = fila8.up(fila7).negative()  # fichas negras
+
 # Crear una casilla blanca y una casilla negra
 black_square = Picture(SQUARE).negative()
 white_square = Picture(SQUARE)
+
 
 # Crear una fila del tablero
 def crearFila(primeracasilla):
@@ -32,8 +44,8 @@ def chessboard():
     fila3y4 = fila1y2
     mitadTablero = fila1y2.up(fila3y4)
     chessboard = mitadTablero.up(mitadTablero)
-    return chessboard
+    return chessboard 
 
 # Crear y dibujar el tablero
-chessboard = chessboard()
+chessboard = chessboard().up(fichasnegras)
 draw(chessboard)
