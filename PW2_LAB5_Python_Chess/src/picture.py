@@ -2,7 +2,7 @@ from colors import *
 
 class Picture:
     def __init__(self, img):
-        self.img = img
+        self.img = img if isinstance(img, list) else [str(img)]
 
     def __eq__(self, other):
         return self.img == other.img
@@ -41,23 +41,17 @@ class Picture:
         return Picture(nueva_imagen)
 
     def up(self, p):
-        """ Devuelve una nueva figura poniendo la figura p arriba de la
-            figura actual """
+        """Combina verticalmente con otra Picture o lista"""
+        if isinstance(p, list):
+            return Picture(self.img + p)
         return Picture(p.img + self.img)
 
     def under(self, p):
-        """ Devuelve una nueva figura poniendo la figura superpuesta de la
-            figura actual """
-        nueva_imagen = []
-        for fila1, fila2 in zip(self.img, p.img):
-            nueva_fila = ''
-            for c1, c2 in zip(fila1, fila2):
-                if c2 != ' ':
-                    nueva_fila += c2
-                else:
-                    nueva_fila += c1
-            nueva_imagen.append(nueva_fila)
-        return Picture(nueva_imagen)
+        """Superposición inteligente a nivel de píxel"""
+        return Picture([
+            ''.join([pc if pc != ' ' else bc for bc, pc in zip(base_row, overlay_row)])
+            for base_row, overlay_row in zip(self.img, p.img)
+        ])
 
     def horizontalRepeat(self, n):
         """ Devuelve una nueva figura repitiendo la figura actual al costado
