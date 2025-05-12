@@ -41,14 +41,23 @@ class Picture:
         return Picture(nueva_imagen)
 
     def up(self, p):
-        """ Devuelve una nueva figura poniendo la figura p sobre la
+        """ Devuelve una nueva figura poniendo la figura p arriba de la
             figura actual """
         return Picture(p.img + self.img)
 
     def under(self, p):
-        """ Devuelve una nueva figura poniendo la figura p debajo de la
+        """ Devuelve una nueva figura poniendo la figura superpuesta de la
             figura actual """
-        return Picture(self.img + p.img)
+        nueva_imagen = []
+        for fila1, fila2 in zip(self.img, p.img):
+            nueva_fila = ''
+            for c1, c2 in zip(fila1, fila2):
+                if c2 != ' ':
+                    nueva_fila += c2
+                else:
+                    nueva_fila += c1
+            nueva_imagen.append(nueva_fila)
+        return Picture(nueva_imagen)
 
     def horizontalRepeat(self, n):
         """ Devuelve una nueva figura repitiendo la figura actual al costado
