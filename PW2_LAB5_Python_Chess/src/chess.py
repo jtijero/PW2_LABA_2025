@@ -28,8 +28,10 @@ def chessboard():
     second_row = crearFila('black')  # Fila con negro a la izquierda
     
     # Combinar las filas para formar el tablero
-    chessboard = first_row.up(second_row)
-    
+    fila1y2 = first_row.up(second_row)
+    fila3y4 = fila1y2
+    mitadTablero = fila1y2.up(fila3y4)
+    chessboard = mitadTablero.up(mitadTablero)
     return chessboard
 
 # Crear y dibujar el tablero
