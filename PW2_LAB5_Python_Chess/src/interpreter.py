@@ -15,8 +15,8 @@ def draw(picture):
     img = picture
   pygame.init()
 
-  DISPLAY=pygame.display.set_mode((920, 460))
-  DISPLAY.fill(BLUE)
+  DISPLAY=pygame.display.set_mode((464, 464))
+  DISPLAY.fill(BLACK)
 
   n = len(img)
   for i in range(0, n):
