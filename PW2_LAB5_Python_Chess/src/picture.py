@@ -46,12 +46,50 @@ class Picture:
             return Picture(self.img + p)
         return Picture(p.img + self.img)
 
-    def under(self, p):
-        """Superposición inteligente a nivel de píxel"""
-        return Picture([
-            ''.join([pc if pc != ' ' else bc for bc, pc in zip(base_row, overlay_row)])
-            for base_row, overlay_row in zip(self.img, p.img)
-        ])
+    def under(self, other):
+        """
+        Superpone dos objetos Picture. La imagen 'other' se coloca sobre 'self'.
+        Los píxeles transparentes (representados por espacio ' ') en 'other' permiten
+        ver la imagen subyacente 'self'.
+
+        Parámetros:
+        other (Picture): Imagen a superponer
+        Retorna:
+        Picture: Nueva imagen combinada
+        """
+        # Validación 1: Misma cantidad de filas
+        if len(self.img) != len(other.img):
+            raise ValueError(
+                f"Error en altura: {len(self.img)} vs {len(other.img)} filas"
+            )
+    
+        # Validación 2: Mismo ancho en todas las filas
+        for i, (fila_self, fila_other) in enumerate(zip(self.img, other.img)):
+            if len(fila_self) != len(fila_other):
+                raise ValueError(
+                    f"Ancho incompatible en fila {i}: "
+                    f"{len(fila_self)} vs {len(fila_other)} caracteres"
+                )
+    
+        # Combinación pixel a pixel
+        imagen_combinada = [
+            ''.join(
+            # Mantener pixel de 'other' excepto si es transparente
+            pixel_other if pixel_other != ' ' else pixel_self
+            for pixel_self, pixel_other in zip(fila_self, fila_other)
+            )
+            for fila_self, fila_other in zip(self.img, other.img)
+        ]
+    
+        return Picture(imagen_combinada)
+
+    
+    def resize(self, width, height):
+        """Redimensiona la imagen al tamaño especificado"""
+        return Picture(
+          [row[:width] for row in self.img[:height]]
+        )
+
 
     def horizontalRepeat(self, n):
         """ Devuelve una nueva figura repitiendo la figura actual al costado

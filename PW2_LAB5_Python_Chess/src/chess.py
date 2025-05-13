@@ -56,8 +56,8 @@ def colocar_ficha(tablero, ficha, x, y):
 caballo_negro = knight.negative()
 peon_negro = pawn.negative()
 # Colocar caballo en a1 (0,0) y peón en d4 (3,3)
-tablero = colocar_ficha(tablero, caballo_negro, x=0, y=0)  # a1
-tablero = colocar_ficha(tablero, peon_negro, x=3, y=3)     # d4 (3*60=180)
+tablero = colocar_ficha(tablero, caballo_negro, x=0, y=0)  # a8
+tablero = colocar_ficha(tablero, peon_negro, x=3, y=3)     # d5 (3*60=180)
 
 
 draw(tablero)
