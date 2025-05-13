@@ -52,13 +52,42 @@ def colocar_ficha(tablero, ficha, x, y):
     return tablero.under(Picture(capa))
 
 
-# Crear piezas de 60x60 caracteres
+torre_negra = rock.negative()
 caballo_negro = knight.negative()
+alfil_negro = bishop.negative()
+reina_negra = queen.negative()
+rey_negro = king.negative()
 peon_negro = pawn.negative()
-# Colocar caballo en a1 (0,0) y peón en d4 (3,3)
-tablero = colocar_ficha(tablero, caballo_negro, x=0, y=0)  # a8
-tablero = colocar_ficha(tablero, peon_negro, x=3, y=3)     # d5 (3*60=180)
 
+# Blancas (versiones originales)
+torre_blanca = rock.horizontalMirror()
+caballo_blanco = knight.horizontalMirror()
+alfil_blanco = bishop.horizontalMirror()
+reina_blanca = queen.horizontalMirror()
+rey_blanco = king.horizontalMirror()
+peon_blanco = pawn.horizontalMirror()
 
-draw(tablero)
+def configurar_piezas_iniciales(tablero):
+    """Coloca todas las piezas en posición inicial"""
+    # Piezas negras (filas 0 y 1)
+    piezas_negras = [torre_negra, caballo_negro, alfil_negro, reina_negra, 
+                    rey_negro, alfil_negro, caballo_negro.verticalMirror(), torre_negra]
+    
+    for x in range(8):
+        tablero = colocar_ficha(tablero, piezas_negras[x], x, 7)
+        tablero = colocar_ficha(tablero, peon_negro, x, 6)    
+    
+    # Piezas blancas (filas 6 y 7)
+    piezas_blancas = [torre_blanca, caballo_blanco, alfil_blanco, reina_blanca,
+                     rey_blanco, alfil_blanco, caballo_blanco.verticalMirror(), torre_blanca]
+    
+    for x in range(8):
+        tablero = colocar_ficha(tablero, piezas_blancas[x], x, 0) 
+        tablero = colocar_ficha(tablero, peon_blanco, x, 1)        
+    
+    return tablero
+
+tablero_vacio = chessboard()
+tablero_completo = configurar_piezas_iniciales(tablero_vacio)
+draw(tablero_completo)
 
