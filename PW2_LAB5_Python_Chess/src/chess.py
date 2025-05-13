@@ -1,13 +1,9 @@
-# chess.py
 from chessPictures import *
 from interpreter import draw
 
-
-# Crear una casilla blanca y una casilla negra
 black_square = Picture(SQUARE).negative()
 white_square = Picture(SQUARE)
 
-# Crear una fila del tablero
 def crearFila(primeracasilla):
     fila = Picture([])
     color_actual = primeracasilla
@@ -18,29 +14,51 @@ def crearFila(primeracasilla):
     return fila
 
 
-# Crear los caballos y peones
-knight = Picture(KNIGHT)
-pawn = Picture(PAWN) 
-
-# Crear filas de las piezas
-fila8 = knight.horizontalRepeat(2)  # fila del rey negro
-fila7 = pawn.horizontalRepeat(2)  # fila de peones negros
-
-# Combinar las filas
-fichasnegras = fila7.up(fila8).negative()  # fichas negras
-
-# Crear el tablero de 8 filas
 def chessboard():
-    # Construcción modular del tablero
-    tablero_base = Picture([])
-    for i in range(8):
-        fila = crearFila('white' if i%2==0 else 'black')
-        tablero_base = tablero_base.up(fila.img)
+    fila_blanca = crearFila('white')  # 8x60 = 480 caracteres
+    fila_negra = crearFila('black')
+    tablero_base = fila_blanca.up(fila_negra).verticalRepeat(4)  # 8 filas (4 pares)
     return tablero_base
 
-    
-    # Crear y dibujar el tablero
-chessboardbase = chessboard()
-new_chessboard = chessboard().under(fichasnegras)
 
-draw(new_chessboard)
+tablero= chessboard()  
+
+# Nuevo método para posicionar fichas en coordenadas
+def colocar_ficha(tablero, ficha, x, y):
+    # Tamaño de cada casilla
+    ancho_casilla = 58
+    alto_casilla = 58
+    
+    # Validar coordenadas
+    if x < 0 or x >= 8 or y < 0 or y >= 8:
+        raise ValueError("Coordenadas fuera del tablero (0-7)")
+    
+    # Calcular posición inicial en píxeles
+    inicio_x = x * ancho_casilla
+    inicio_y = y * alto_casilla
+    
+    # Crear capa transparente
+    capa = []
+    for i, fila in enumerate(tablero.img):
+        if inicio_y <= i < inicio_y + alto_casilla:
+            # Insertar línea de la ficha en posición horizontal
+            linea_ficha = ficha.img[i - inicio_y]
+            nueva_linea = fila[:inicio_x] + linea_ficha + fila[inicio_x + ancho_casilla:]
+            capa.append(nueva_linea)
+        else:
+            # Línea completamente transparente
+            capa.append(' ' * len(fila))
+    
+    return tablero.under(Picture(capa))
+
+
+# Crear piezas de 60x60 caracteres
+caballo_negro = knight.negative()
+peon_negro = pawn.negative()
+# Colocar caballo en a1 (0,0) y peón en d4 (3,3)
+tablero = colocar_ficha(tablero, caballo_negro, x=0, y=0)  # a1
+tablero = colocar_ficha(tablero, peon_negro, x=3, y=3)     # d4 (3*60=180)
+
+
+draw(tablero)
+
