@@ -18,6 +18,9 @@
      - **Problema 7**: Haga gráficos comparativos entre regiones elegidas por el usuario.
      - **Problema 8**: Visualice un gráfico comparativo del crecimiento en regiones excepto Lima y Callao, mostrando el número de confirmados por cada día
 
+2. **PW2_LAB5_Python_Chess**
+   - **Descripción**: Crear un tablero de ajedrez, usando pygame, mostrando el taablero inicial, de las clases proporcionadas por el profesor, implementar la logica para mostrar el tablero y mostrar las piezas
+     - **Consideraciones**: Para resolver los siguientes ejercicios sólo está permitido usar ciclos, condicionales, definición de listas por comprensión, sublistas, map, join, (+), lambda, zip, append, pop, range.
      
 
 
