@@ -6,13 +6,20 @@ cd src
   //git init según la practica, pero no lo haremos
 
 3. Activando el entorno virtual
+	cd ..
 	source ../bin/activate   (.\py1\Scripts\activate) <--windows
  
 4.Instalar bibliotecas necesarias
 	pip install pygame
+	python.exe -m pip install --upgrade pip
 python -m pip show pygame //verifica que pygame esté instalado correctamente
 
 //5.Desactivar entorno virtual()
 	deactivate
 	
-
+6. Viendo un ejemplo
+	cd py1\Lib\site-packages\pygame\examples
+	python sound.py
+	Python cursors.py
+cd ..
+deactivate

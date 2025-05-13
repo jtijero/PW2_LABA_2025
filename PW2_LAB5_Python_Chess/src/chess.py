@@ -70,16 +70,16 @@ peon_blanco = pawn.horizontalMirror()
 def configurar_piezas_iniciales(tablero):
     """Coloca todas las piezas en posición inicial"""
     # Piezas negras (filas 0 y 1)
-    piezas_negras = [torre_negra, caballo_negro, alfil_negro, reina_negra, 
-                    rey_negro, alfil_negro, caballo_negro.verticalMirror(), torre_negra]
+    piezas_negras = [torre_negra.rotate(), caballo_negro, alfil_negro, reina_negra, 
+                    rey_negro, alfil_negro, caballo_negro.verticalMirror(), torre_negra.rotate()]
     
     for x in range(8):
         tablero = colocar_ficha(tablero, piezas_negras[x], x, 7)
         tablero = colocar_ficha(tablero, peon_negro, x, 6)    
     
     # Piezas blancas (filas 6 y 7)
-    piezas_blancas = [torre_blanca, caballo_blanco, alfil_blanco, reina_blanca,
-                     rey_blanco, alfil_blanco, caballo_blanco.verticalMirror(), torre_blanca]
+    piezas_blancas = [torre_blanca.rotate(), caballo_blanco, alfil_blanco, reina_blanca,
+                     rey_blanco, alfil_blanco, caballo_blanco.verticalMirror(), torre_blanca.rotate()]
     
     for x in range(8):
         tablero = colocar_ficha(tablero, piezas_blancas[x], x, 0) 

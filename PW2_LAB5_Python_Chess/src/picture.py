@@ -103,4 +103,18 @@ class Picture:
         return Picture(repetida)
 
     def rotate(self):
-        """ Devuelve una figura rotada en 90 grados en sentido horario """
+      """Devuelve una figura rotada 90 grados en sentido horario
+          Caso imagen vacía
+          Determinar el número de columnas (todas las filas deben tener igual longitud)
+          Construir la imagen rotada
+          Toma caracteres verticalmente desde abajo hacia arriba"""
+      if not self.img:  
+        return Picture([])
+    
+      columnas = len(self.img[0])
+      
+      imagen_rotada = [
+          ''.join([fila[i] for fila in reversed(self.img)])  
+          for i in range(columnas)
+      ]
+      return Picture(imagen_rotada)
