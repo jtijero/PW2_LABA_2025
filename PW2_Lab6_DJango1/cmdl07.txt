@@ -4,8 +4,31 @@ pip3 install virtualenv
 
 C:\Users\TIJERO\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\python.exe -m pip install --upgrade pip
 
-Si se pudo pero esto es en linux> virtualenv -p python3 destino   //dentro de directorio de trabajo
+Si se pudo pero esto es en linux> virtualenv -p python3 destino  [Windows> python3 -m venv destino]//dentro de directorio de trabajo
+
 Linux --> source destino/bin/activate //se tendrá que repetir este paso cada vez que inicie una nueva terminal
+
 Windows (usándolo ahora)> .\destino\Scripts\Activate.ps1
 pip3 install Django
 pip3 freeze //Muestra las bibliotecas instaladas en el entorno activo actual
+
+deactivate
+cd .. //yendo a C:\Users\TIJERO\Desktop\PW2_LABA_2025\PW2_Lab6_DJango1
+dir destino\Scripts //verificando que este actívate.ps1
+.\destino\Scripts\Activate.ps1
+
+cd src
+django-admin startproject listaContactos //Crea un nuevo proyecto llamado “listaContactos” con la configuración básica
+
+vim listaContactos/settings.py //colocamos:
+	LANGUAGE_CODE = 'es'
+	TIME_ZONE = 'America/Lima'
+//y guardamos :wq
+cd listaContactos
+pip install django
+python -m django --versión //verificando instalación
+python manage.py runserver
+//18 migraciones pendientes [se puede crear un gitignore pero mejor no]
+
+
+
