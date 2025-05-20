@@ -1,8 +1,11 @@
 pip3 install virtualenv
 
-//se agrego virtualenv en path de variables de sistema  C:\Users\TIJERO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\Scripts
+>Averiguando que si se puede.. //se agrego virtualenv en path de variables de sistema  C:\Users\TIJERO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\Scripts
 
 C:\Users\TIJERO\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\python.exe -m pip install --upgrade pip
 
-virtualenv -p python3 destino   //dentro de directorio de trabajo
-	
+Si se pudo pero esto es en linux> virtualenv -p python3 destino   //dentro de directorio de trabajo
+Linux --> source destino/bin/activate //se tendrá que repetir este paso cada vez que inicie una nueva terminal
+Windows (usándolo ahora)> .\destino\Scripts\Activate.ps1
+pip3 install Django
+pip3 freeze //Muestra las bibliotecas instaladas en el entorno activo actual
