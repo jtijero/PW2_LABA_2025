@@ -3,5 +3,13 @@ python -m venv env
 env\Scripts\activate
 pip install django
 
+	//\PW2_Lab6_DJango1\env\Lib\site-packages [main ≡]> python.exe -m pip install --upgrade pip
+
 # 1. Configuración inicial
 django-admin startproject mi_proyecto
+cd mi_proyecto
+python manage.py startapp tienda
+	//Agregar la aplicación al archivo settings.py del proyecto
+	//Definir el modelo Producto y Venta en models.py de la aplicación tienda
+
+	
