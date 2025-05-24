@@ -30,5 +30,7 @@ python -m django --versión //verificando instalación
 python manage.py runserver
 //18 migraciones pendientes [se puede crear un gitignore pero mejor no]
 
+python manage.py migrate
+
 
 

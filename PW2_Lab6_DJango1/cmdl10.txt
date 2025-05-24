@@ -1,0 +1,7 @@
+# 0. Crear y activar entorno virtual
+python -m venv env
+env\Scripts\activate
+pip install django
+
+# 1. Configuración inicial
+django-admin startproject mi_proyecto
