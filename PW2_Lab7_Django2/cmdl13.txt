@@ -18,3 +18,17 @@ python manage.py startapp calc
 //First App in Django Part 2
 // crear urls.py en app calc
 python manage.py runserver 127.0.0.1:8101
+
+//Django Template Language (DTL) Part 1 y 2
+4. Creación de Vistas
+Explicación de qué son las vistas en Django y su función.
+Creación de vistas básicas que devuelven contenido HTML.
+Introducción a las vistas basadas en clases y funciones.
+5. Templates y Archivos Estáticos
+Cómo usar el sistema de plantillas de Django para generar HTML dinámico.
+Configuración de archivos estáticos (CSS, JavaScript) y su uso en las plantillas.
+Ejemplos de cómo incluir archivos estáticos en las plantillas.
+
+//suma de dos números en django
+modificación de urls.py views.py de app calc
+
