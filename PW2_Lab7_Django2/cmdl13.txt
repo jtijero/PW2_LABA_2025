@@ -37,4 +37,9 @@ modificación de urls.py views.py de app calc
 // buscar travello colorlib
 //descargarlo
 python manage.py startapp travello //en (test) C:\Users\TIJERO\Desktop\PW2_LABA_2025\PW2_Lab7_Django2\projects\telusko [main ≡ +1 ~1 -0 !]>
+// se editan urls de travello, y del proyecto
+//Static Files 2
+ static/   dentro de C:\Users\TIJERO\Desktop\PW2_LABA_2025\PW2_Lab7_Django2\projects\telusko\
+// añadir {% static '#' %} a toda la vaina
+
 
