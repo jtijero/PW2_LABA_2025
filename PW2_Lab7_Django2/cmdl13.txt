@@ -1,0 +1,16 @@
+python -m venv test
+test/Scripts/actívate
+pip install django
+django-admin --versión
+mkdir projects
+cd projects
+django-admin startproject telusko
+cd telusko 
+Python manage.py runserver 127.0.0.1:8101
+
+// opcion b pero mejor no me complico> pip install virtualenvwrapper-win
+
+//First App in Django Part 1
+test/Scripts/actívate //en terminal de vs
+cd projects/telusko
+python manage.py startapp calc
