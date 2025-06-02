@@ -6,7 +6,7 @@ mkdir projects
 cd projects
 django-admin startproject telusko
 cd telusko 
-Python manage.py runserver 127.0.0.1:8101
+python manage.py runserver 127.0.0.1:8101
 
 // opcion b pero mejor no me complico> pip install virtualenvwrapper-win
 
@@ -14,3 +14,7 @@ Python manage.py runserver 127.0.0.1:8101
 test/Scripts/actívate //en terminal de vs
 cd projects/telusko
 python manage.py startapp calc
+
+//First App in Django Part 2
+// crear urls.py en app calc
+python manage.py runserver 127.0.0.1:8101
