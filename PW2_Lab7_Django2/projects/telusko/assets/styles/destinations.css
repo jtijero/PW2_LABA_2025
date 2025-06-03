@@ -902,7 +902,7 @@ section
 }
 .destinations_row
 {
-	margin-top: 45px;
+	margin-top: 25px;
 }
 .destination_image
 {
@@ -933,7 +933,7 @@ section
 .destinations_container
 {
 	width: calc(100% + 30px);
-	left: -15px;
+	left: -10px;
 }
 .destination
 {
