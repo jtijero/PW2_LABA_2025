@@ -7,3 +7,8 @@ django-admin startproject lab8
 cd lab8
 dir
 python manage.py runserver 127.0.0.1:8147
+
+python manage.py startapp unoAmuchos
+//se agregan modelos y tambien se agrega el app
+python manage.py makemigrations
+python manage.py migrate
