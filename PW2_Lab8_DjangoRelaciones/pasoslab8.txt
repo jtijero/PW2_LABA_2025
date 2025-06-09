@@ -44,4 +44,30 @@ edita clases Language y Framework
 	Framework.objects.filter(language__name__startswith='Pa')
 	Language.objects.filter(framework__name='Spring')
 	Language.objects.filter(framework__name='Bottle')
+
+//tercer video
+se agrega clase Movie y Character
+	exit()
+python manage.py makemigrations
+python manage.py migrate
+	python manage.py Shell
+>>> from unoAmuchos.models import Movie, Character
+>>> avengers =Movie(name='Avengers')
+>>> avengers.save()
+>>> captain_america = Character(name='Captain America')
+>>> captain_america.save()
+>>> captain_america.movies.add(avengers)
+>>> civil_war = Movie(name='Civil War')
+>>> thor = Movie(name='Thor:Dark World')
+>>> thor_character = Character(name='Thor')
+>>> civil_war.save()
+>>> thor.save()
+>>> thor_character.save()
+>>> captain_america.movies.add(civil_war)
+>>> thor_character.movies.add(avengers)
+>>> thor_character.movies.add(thor)
+>>> captain_america.movies.create(name='Winter Soldier')
+<Movie: Winter Soldier>
+>>>
+
 	
