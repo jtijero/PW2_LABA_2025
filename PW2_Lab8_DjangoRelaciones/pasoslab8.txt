@@ -12,3 +12,23 @@ python manage.py startapp unoAmuchos
 //se agregan modelos y tambien se agrega el app
 python manage.py makemigrations
 python manage.py migrate
+//abro sql browser
+python manage.py Shell
+	from unoAmuchos.models import Language, Framework
+	python = Language(name= 'Python')
+	django = Framework(name ='Flask')
+	Flask2 = Framework(name='Flask2')
+	python
+	django.language = python
+	flask.language = python
+	Flask2.language = python
+	bottle = Framework(name='Bottle', language=python)
+	django.save()
+	Flask2.save()
+	bottle.save()
+	
+	java = Language(name='Java')
+	spring = Framework(name='Spring', language=java)
+	java.save()
+	spring.save()
+	
