@@ -31,4 +31,17 @@ python manage.py Shell
 	spring = Framework(name='Spring', language=java)
 	java.save()
 	spring.save()
+
+//segundo video
+edita clases Language y Framework 
+	exit()
+	python manage.py Shell
+	from unoAmuchos.models import Language, Framework
+	Framework.objects.all()
+	Framework.objects.filter(language__name='Python')
+	Framework.objects.filter(language__name='Java')
+	Framework.objects.filter(language__name__startswith='Py')
+	Framework.objects.filter(language__name__startswith='Pa')
+	Language.objects.filter(framework__name='Spring')
+	Language.objects.filter(framework__name='Bottle')
 	
