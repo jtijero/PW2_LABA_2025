@@ -1,0 +1,9 @@
+python -m venv relaciones
+relaciones/Scripts/actívate
+pip install django
+mkdir projects
+cd projects
+django-admin startproject lab8
+cd lab8
+dir
+python manage.py runserver 127.0.0.1:8147
