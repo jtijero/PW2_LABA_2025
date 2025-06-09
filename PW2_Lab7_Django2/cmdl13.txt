@@ -42,4 +42,9 @@ python manage.py startapp travello //en (test) C:\Users\TIJERO\Desktop\PW2_LABA_
  static/   dentro de C:\Users\TIJERO\Desktop\PW2_LABA_2025\PW2_Lab7_Django2\projects\telusko\
 // añadir {% static '#' %} a toda la vaina
 
+Passing Dynamic Data in HTML 
+travello
+//diferenciar la informacion de cada una de las descriptions
+python -m pip install --upgrade pip
 
+if statement in django
