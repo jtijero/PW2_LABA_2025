@@ -69,3 +69,30 @@ services/products.ts getproducts retorna lo que esta arriba declarado (los produ
 products/products.ts se importa interface aqui
 adentro de productos se necesita que de alguna forma se pueda traer de vuelta el recurso product
 servicio Products> inyectado en product
+
+renderización
++products.html
++products.css
+
+Evaluación de la Directiva @for
+Angular verifica el array productos en el componente TypeScript
+Crea un TemplateRef para el bloque <article>
+Utiliza producto.id como identificador único para optimización (trackBy automático)
+
+Generación de Elementos Dinámicos
+Por cada elemento en productos:
+Crea un elemento <article> con su propio contexto
+Establece el ámbito léxico para las variables del producto
+Aplica el CSS scope del componente (gracias a View Encapsulation)
+
+Data Binding de Propiedades
+Mecanismo de actualización:
+Angular crea un Property Binding unidireccional
+Actualiza los atributos cuando cambia producto.imagen o producto.nombre
+Usa SafeUrl para sanitización automática de URLs
+
+Interpolacion de Texto
+Proceso de renderizado:
+Crea nodos de texto con document.createTextNode()
+Establece un watcher para cambios en las propiedades
+Actualiza solo los textos modificados (detección de cambios granular)
