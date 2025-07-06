@@ -49,3 +49,5 @@ package.json //manera de iniciar servidor usando npm start
 confirmando que se llamen igual en app.routes.ts que en cada archivo .ts ejm:
 export class Products {
 {path: 'productos', component: Products },
+
+modificaciones en header(.html y .css) y style.css
