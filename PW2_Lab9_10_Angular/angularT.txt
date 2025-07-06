@@ -56,3 +56,16 @@ modificación en home.html(inicio)
 colocamos imágenes en public
 //angular.json preconfigurado para que los archivos staticos(recursos) > assets > carpeta public
 modificación en footer.html, products.html, contact.html y estilos
+
+Servicios - mostrar productos
+Los servicios nos permiten separar la lógica y los datos que pueden ser reutilizados por múltiples componentes la idea es que un servicio nosotros lo podemos crear y posteriormente estos servicios los podemos inyectar dentro de cualquier componente y por eso se trabaja con "Inyección de dependencias"
+
+parar el servidor
+ng generate service services/products
+//products.spec.ts archivo para las pruebas unitarias
+//products.ts archivo generado
+
+services/products.ts getproducts retorna lo que esta arriba declarado (los productos) se crea interface aqui
+products/products.ts se importa interface aqui
+adentro de productos se necesita que de alguna forma se pueda traer de vuelta el recurso product
+servicio Products> inyectado en product
