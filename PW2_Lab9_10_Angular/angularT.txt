@@ -44,3 +44,8 @@ modificación de app.html
 router-outlet> //reconocer todas as rutas creadas específicamente dentro del archivo de rutas, en app.routes.ts
 
 package.json //manera de iniciar servidor usando npm start
+
+//href en header.html hace que recargue la pagina, si no queremos que recargue lo sustituiremos por routerLink CtrlD
+confirmando que se llamen igual en app.routes.ts que en cada archivo .ts ejm:
+export class Products {
+{path: 'productos', component: Products },
