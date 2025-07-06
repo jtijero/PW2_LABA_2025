@@ -12,4 +12,16 @@ yes
 open folder motos
 terminal new terminal > bash
 TIJERO@Heisenberg MINGW64 ~/Desktop/PW2_LABA_2025/PW2_Lab9_10_Angular/motos (main)
-ng serve -o //'-o' levantar proyecto y disponer en navegador
+ng serve -o 	//'-o' levantar proyecto y disponer en navegador
+
+//git config --global core.autocrlf true
+//git status --short
+
+ng generate component components/header
+ng generate component components/footer
+ng generate component pages/home
+ng generate component pages/products
+ng generate component pages/about
+ng generate component pages/contact
+
+modificación en style.css: influye a todos
