@@ -1,0 +1,15 @@
+creación de carpeta angular
+uso de terminal bash en vscode
+npm install -g npm@latest
+npm install -g @angular/cli
+ng v
+ng new motos
+no
+no
+CSS
+yes
+
+open folder motos
+terminal new terminal > bash
+TIJERO@Heisenberg MINGW64 ~/Desktop/PW2_LABA_2025/PW2_Lab9_10_Angular/motos (main)
+ng serve -o //'-o' levantar proyecto y disponer en navegador

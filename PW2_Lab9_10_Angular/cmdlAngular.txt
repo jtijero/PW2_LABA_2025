@@ -1,0 +1,6 @@
+node --version
+npm install -g npm
+npm install -g n
+n latest
+ //Este comando utiliza el módulo "n" de npm para instalar la última versión de Node.js.
+node -v
