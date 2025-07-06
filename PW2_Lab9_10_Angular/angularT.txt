@@ -30,3 +30,17 @@ app.routes.ts //generación del enrutamiento: posibilidad dé cada vez que da cl
 //versiones anteriores se tenia que construir manualmente, ahora viene por defecto
 
 modificación de app.routes.ts
+
+modificación de componenete de encabezado header.ts
+RouterModule //permitir poder llamar a cada una de nuestras paginas sin tener que estar recargando la misma 
+modificación de header.html
+
+app.ts //componente principal
+agregación de Header y Footer
+app.html
+prefijo app-header en selector en headers.ts
+para campbiarlo > angular.json "prefix":"app",
+modificación de app.html
+router-outlet> //reconocer todas as rutas creadas específicamente dentro del archivo de rutas, en app.routes.ts
+
+package.json //manera de iniciar servidor usando npm start
