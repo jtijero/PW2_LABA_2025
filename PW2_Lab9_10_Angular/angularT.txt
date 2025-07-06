@@ -25,3 +25,8 @@ ng generate component pages/about
 ng generate component pages/contact
 
 modificación en style.css: influye a todos
+
+app.routes.ts //generación del enrutamiento: posibilidad dé cada vez que da click > conducir al usuario a alguna pagina dentro del sitio
+//versiones anteriores se tenia que construir manualmente, ahora viene por defecto
+
+modificación de app.routes.ts
