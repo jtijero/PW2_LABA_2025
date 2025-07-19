@@ -1,13 +1,13 @@
 ## Actividades:
-1. **PW2_LAB2_GitHub**
+2. **PW2_LAB2_GitHub**
    - **Descripción**: Crear cuenta y aprender a usar git
 
-2. **PW2_LAB3_Javascript**
+3. **PW2_LAB3_Javascript**
    - **Descripción**: Resolver los 67 ejercicios de javaScript en w3schools.com y subir un pantallazo con su nombre y apellido. Resolver los ejercicios propuestos del laboratorio y en su tarea deberán hacer las siguientes páginas:
      - **Pagina1.html**: Cree una página web con un texto y dos botones (al estilo del ejemplo del foco que se enciende y apaga) que permitan cambiar el tamaño de la letra de un texto, intente hacerlo también con los colores.
      - **Pagina2.html**: Cree una página web que permita realizar las operaciones aritmética, lógicas y de bits básicas, de manera dinámica( se podrá elegir cualquier operador) y se trabajará con dos argumentos.
 
-3. **PW2_LAB4_Ajax_GoogleChart**
+4. **PW2_LAB4_Ajax_GoogleChart**
    - **Descripción**: Revisar Ajax en w3schools y Presentar un informe con un pantallazo por cada ejemplo de Ajax realizado en su propio servidor web. Y también, Implementar un programa en AJAX y una página web para los siguientes problemas:
      - **Problema 1**: Liste todas las “regiones”.
      - **Problema 2**: Muestre el número total de confirmados por región
@@ -18,9 +18,22 @@
      - **Problema 7**: Haga gráficos comparativos entre regiones elegidas por el usuario.
      - **Problema 8**: Visualice un gráfico comparativo del crecimiento en regiones excepto Lima y Callao, mostrando el número de confirmados por cada día
 
-2. **PW2_LAB5_Python_Chess**
+5. **PW2_LAB5_Python_Chess**
    - **Descripción**: Crear un tablero de ajedrez, usando pygame, mostrando el taablero inicial, de las clases proporcionadas por el profesor, implementar la logica para mostrar el tablero y mostrar las piezas
      - **Consideraciones**: Para resolver los siguientes ejercicios sólo está permitido usar ciclos, condicionales, definición de listas por comprensión, sublistas, map, join, (+), lambda, zip, append, pop, range.
+
+6. **PW2_LAB6_Django1**
+   - **Descripción**:
+      1. Cree un ambiente virtual para esta práctica.
+      2. Instale Django en el ambiente virtual.
+      3. Cree un directorio e inicialize un repositorio git en el y cree un proyecto github y   enlacelos.
+      4. Cree un archivo .gitignore según este repositorio https://github.com/django/django/blob/main/.gitignore
+      5. Crear un proyecto en Django que maneje una tabla de Productos y una tabla de Ventas
+      6. Crear las apps necesarias en Django
+      7. Crear las vistas y formularios necesarios en Django para que se pueda ingresar una venta de varios productos.
+
+
+
      
 
 
