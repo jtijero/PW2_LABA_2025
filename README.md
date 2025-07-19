@@ -32,6 +32,18 @@
       6. Crear las apps necesarias en Django
       7. Crear las vistas y formularios necesarios en Django para que se pueda ingresar una venta de varios productos.
 
+7. **PW2_LAB7_Django2**
+   - **Objetivos**:
+      1. Implementar una aplicación en Django utilizando una plantilla profesional.
+      2. Utilizar una tabla de Destinos turísticos para leer y completar la página web.
+      3. Utilizar los tags “if” y “for” en los archivos html para leer todos los registros de una tabla desde una base de datos.
+
+   - **Descripcion**:
+      1. Crear un proyecto en Django
+      2. Siga los pasos del video para poder implementar la aplicación de Destinos turísticos
+      3. Use git y haga los commits necesarios para manejar correctamente la aplicación.
+
+
 
 
      
