@@ -43,6 +43,15 @@
       2. Siga los pasos del video para poder implementar la aplicación de Destinos turísticos
       3. Use git y haga los commits necesarios para manejar correctamente la aplicación.
 
+8. **PW2_LAB8_DjangoRelaciones**
+   - **Descripcion**:
+      De manera individual, reproducir las actividades de los videos donde trabajamos:
+      1. Relación de uno a muchos (one-to-many-relationships-8.m4v, Query-one-to-many-10.m4v)
+      2. Relación muchos a muchos (many-to-many-relationships-11.m4v, many-to-many-Query-12.m4v y Database-settings-13.m4v)
+      3. Impresión de pdfs (Render a Django HTML Template to a PDF file Django Utility CFE Render_to_PDF.mp4)
+      4. Envio de emails (Sending Emails in Django.mp4)
+
+
 
 
 
